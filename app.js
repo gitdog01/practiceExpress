@@ -26,6 +26,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // http Loader
 
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('Successfully connected to mongodb'))
+  .catch(e => console.error(e));
 // DB Loader
 
 app.use('/', indexRouter);
