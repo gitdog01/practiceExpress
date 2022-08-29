@@ -5,11 +5,74 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('dotenv').config();
 
+const debug = require('debug')('pratice:server');
+const http = require('http');
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 
+const server = http.createServer(app);
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+function onError(error) {
+  // 기본 express 놓쳤을 경우
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+// http loader
 
 // log Loader
 
@@ -24,10 +87,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// http Loader
+// express Loader
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI,  { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Successfully connected to mongodb'))
   .catch(e => console.error(e));
 // DB Loader
