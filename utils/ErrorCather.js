@@ -1,3 +1,1 @@
-export default class ErrorCather{
-
-}
+export default class ErrorCather {}
