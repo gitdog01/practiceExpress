@@ -1,18 +1,9 @@
-export default class UserService{
-    constructor(){
+export default class UserService {
+    constructor() {}
 
-    }
+    async SignUp() {}
 
-    async SignUp(){
+    async SignIn() {}
 
-    }
-
-    async SignIn(){
-
-    }
-
-    async ResetPassWord(){
-
-    }
-
+    async ResetPassWord() {}
 }

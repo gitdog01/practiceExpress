@@ -2,14 +2,21 @@ export default class ValidatorUtil {
     constructor() {}
 
     email(input) {
-        let result = false;
-
-        return result;
+        const regex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
+        return input.test(regex);
     }
 
-    password(input) {
-        let result = false;
+    password() {
+        let numberExists = false;
+        let lowerCaseExists = false;
+        let upperCaseExists = false;
+        let specialCharExists = false;
 
-        return result;
+        return (
+            numberExists &&
+            lowerCaseExists &&
+            upperCaseExists &&
+            specialCharExists
+        );
     }
 }

@@ -1,14 +1,7 @@
-export default class DeliveryService{
-    constructor(){
+export default class DeliveryService {
+    constructor() {}
 
-    }
+    async add() {}
 
-    async add(){
-
-    }
-
-    async confirm(){
-
-    }
-
+    async confirm() {}
 }

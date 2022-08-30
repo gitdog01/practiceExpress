@@ -1,18 +1,9 @@
-export default class MedicalStaffService{
-    constructor(){
+export default class MedicalStaffService {
+    constructor() {}
 
-    }
+    async add() {}
 
-    async add(){
+    async confirm() {}
 
-    }
-
-    async confirm(){
-
-    }
-
-    async select(){
-        
-    }
-
+    async select() {}
 }
