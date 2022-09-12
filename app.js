@@ -10,7 +10,6 @@ const http = require('http');
 
 const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 
 function normalizePort(val) {
     const port = parseInt(val, 10);
@@ -94,7 +93,6 @@ mongoose
 // DB Loader
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 // route Loader
 
 // error Handler
